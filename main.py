@@ -4,6 +4,8 @@ from datetime import datetime
 from colorama import Fore, Style
 import logging
 from rpi import RaspberryPi
+import os
+
 
 user = 'AXO'
 today = datetime.now().strftime('%-d_%m_%Y_%H_%M')
@@ -29,6 +31,11 @@ adapter = RaspberryPi(interface='JLINK', user=user)
 logging.error(f'Initiating test for user {user}.')
 
 while True:
+    os.system('clear')
+
+    print(f'{Fore.GREEN}<<< AXO Test adapter ready >>>{Style.RESET_ALL}\n\n')
+    
+    
     time.sleep(1)
     while adapter.check_dut_presence() and not adapter.errors:
         logging.error('DUT detected, test started')
